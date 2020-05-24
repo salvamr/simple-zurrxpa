@@ -1,4 +1,4 @@
-package data.offsets.api.model
+package data.api.offsets.model
 
 import kotlin.reflect.full.memberProperties
 

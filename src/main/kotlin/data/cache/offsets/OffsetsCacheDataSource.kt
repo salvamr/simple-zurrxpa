@@ -1,4 +1,4 @@
-package data.offsets.cache
+package data.cache.offsets
 
 import data.datasource.CacheDataSource
 import domain.model.Offset
@@ -10,7 +10,9 @@ class OffsetsCacheDataSource : CacheDataSource<String, Offset> {
 
     override suspend fun getByKey(key: String): Offset = cache[key]!!
 
-    override suspend fun save(value: Offset) { cache[value.id] = value }
+    override suspend fun save(value: Offset) {
+        cache[value.id] = value
+    }
 
     override suspend fun clear() = cache.clear()
 

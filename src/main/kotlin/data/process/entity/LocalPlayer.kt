@@ -1,13 +1,9 @@
 package data.process.entity
 
-import data.offsets.cache.OffsetsCacheDataSource
+import data.cache.offsets.OffsetsCacheDataSource
 import data.process.GameProcess
 import domain.model.Offset
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.supervisorScope
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.coroutineContext
 
 class LocalPlayer(
     private val gameProcess: GameProcess,

@@ -1,10 +1,10 @@
-package data.offsets.api
+package data.api.offsets
 
 import data.datasource.ReadDataSource
 import domain.model.Offset
 
 class OffsetsApiDataSource(
-        private val offsetsApi: OffsetsApi
+    private val offsetsApi: OffsetsApi
 ) : ReadDataSource<String, Offset> {
     companion object {
         const val OFFSETS_BASE_URL = "https://raw.githubusercontent.com/"

@@ -1,6 +1,6 @@
-package data.offsets.api
+package data.api.offsets
 
-import data.offsets.api.model.OffsetsResponse
+import data.api.offsets.model.OffsetsResponse
 import retrofit2.http.GET
 
 interface OffsetsApi {
