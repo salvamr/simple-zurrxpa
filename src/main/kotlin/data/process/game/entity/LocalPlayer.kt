@@ -1,7 +1,7 @@
-package data.process.entity
+package data.process.game.entity
 
 import data.cache.offsets.OffsetsCacheDataSource
-import data.process.GameProcess
+import data.process.game.GameProcess
 import domain.model.Offset
 import kotlinx.coroutines.runBlocking
 

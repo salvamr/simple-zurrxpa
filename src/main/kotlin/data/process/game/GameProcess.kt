@@ -1,4 +1,4 @@
-package data.process
+package data.process.game
 
 import org.jire.arrowhead.Module
 import org.jire.arrowhead.Process

@@ -2,8 +2,9 @@ import data.api.RetrofitApiClient
 import data.api.offsets.OffsetsApi
 import data.api.offsets.OffsetsApiDataSource
 import data.cache.offsets.OffsetsCacheDataSource
-import data.process.GameProcess
-import data.process.entity.LocalPlayer
+import data.process.game.GameProcess
+import data.process.game.entity.LocalPlayer
+import data.process.keyboard.UserKeyboardManager
 import domain.features.BunnyHop
 import domain.repository.offsets.OffsetsRepository
 import org.koin.dsl.module
@@ -28,8 +29,9 @@ val data = module {
 val domain = module {
     single { GameProcess() }
 
+    single { UserKeyboardManager() }
     single { LocalPlayer(get(), get()) }
 
     //features
-    single { BunnyHop(get()) }
+    single { BunnyHop(get(), get()) }
 }
