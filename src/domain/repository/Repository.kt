@@ -17,7 +17,7 @@ abstract class Repository<Key, Value : Identifiable<Key>>(
                     readDataSource?.getAll()
                             ?.doOnSuccess {
                                 Observable.fromIterable(it)
-                                        .doOnNext { value -> cacheDataSource.save(value) }
+                                        .doOnNext { value -> cacheDataSource.save(value).subscribe() }
                                         .subscribeOn(Schedulers.computation())
                                         .subscribe()
                             }

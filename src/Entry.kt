@@ -3,7 +3,8 @@ import data.offsets.api.OffsetsApi
 import data.offsets.api.OffsetsApiDataSource
 import data.offsets.api.OffsetsApiDataSource.Companion.OFFSETS_BASE_URL
 import data.offsets.cache.OffsetsCacheDataSource
-import domain.process.GameProcess
+import data.process.GameProcess
+import data.process.entity.LocalPlayer
 import domain.repository.offsets.OffsetsRepository
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -29,4 +30,6 @@ private val data = module {
 
 private val domain = module {
     single { GameProcess() }
+
+    single { LocalPlayer(get(), get()) }
 }

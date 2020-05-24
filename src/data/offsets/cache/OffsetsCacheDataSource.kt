@@ -22,7 +22,11 @@ class OffsetsCacheDataSource : CacheDataSource<String, Offset> {
                 } ?: emitter.onComplete()
             }
 
-    override fun save(value: Offset): Completable = Completable.fromAction { cache[value.id] = value }
+    override fun save(value: Offset): Completable =
+            Completable.create { emitter ->
+                cache[value.id] = value
+                emitter.onComplete()
+            }
 
     override fun clear(): Completable = Completable.fromAction { cache.clear() }
 
