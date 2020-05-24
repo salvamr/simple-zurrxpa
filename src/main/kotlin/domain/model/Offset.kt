@@ -6,5 +6,6 @@ data class Offset(val name: String, val value: Int) : Identifiable<String> {
     companion object {
         const val LOCAL_PLAYER = "dwLocalPlayer"
         const val FLAGS = "m_fFlags"
+        const val FORCE_JUMP = "dwForceJump"
     }
 }

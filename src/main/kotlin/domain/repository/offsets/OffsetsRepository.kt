@@ -10,5 +10,5 @@ class OffsetsRepository(
         offsetsCacheDataSource: OffsetsCacheDataSource
 ) : Repository<String, Offset>(readDataSource = offsetsApiDataSource, cacheDataSource = offsetsCacheDataSource) {
 
-    suspend fun sync() = getAll()
+    suspend fun sync() = getAll().isNotEmpty()
 }

@@ -4,27 +4,33 @@ import data.offsets.cache.OffsetsCacheDataSource
 import data.process.GameProcess
 import domain.model.Offset
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.coroutineContext
 
 class LocalPlayer(
-        private val gameProcess: GameProcess,
-        private val offsetsCacheDataSource: OffsetsCacheDataSource
+    private val gameProcess: GameProcess,
+    private val offsetsCacheDataSource: OffsetsCacheDataSource
 ) {
-    /*val localPlayer: Int by lazy {
-        offsetsCacheDataSource.getByKey(Offset.LOCAL_PLAYER)
-                .doOnSuccess { localPlayerOffset ->
-                    with(gameProcess) {
-                        val result = process.int(clientDllAddress + localPlayerOffset.value)
-                        Maybe.just(result)
-                    }
-                }.blockingGet()
+    val localPlayer: Int by lazy {
+        runBlocking {
+            with(gameProcess) {
+                val localPlayerOffset = offsetsCacheDataSource.getByKey(Offset.LOCAL_PLAYER)
+                process.int(clientDllAddress + localPlayerOffset.value)
+            }
+        }
     }
 
-    suspend fun isJumping(): Boolean = coroutineScope {
-        val flags = offsetsCacheDataSource.getByKey(Offset.FLAGS)!!
+    suspend fun isJumping(): Boolean =
         with(gameProcess) {
-            val result = process.int(localPlayer + flags.value)
+            val flagsOffset = offsetsCacheDataSource.getByKey(Offset.FLAGS)
+            val result = process.int(localPlayer + flagsOffset.value)
             result and (1 shl 0) != 1
         }
-    }*/
+
+    suspend fun jump() = with(gameProcess) {
+        val forceJumpOffset = offsetsCacheDataSource.getByKey(Offset.FORCE_JUMP)
+        process[clientDllAddress + forceJumpOffset.value] = 6
+    }
 }

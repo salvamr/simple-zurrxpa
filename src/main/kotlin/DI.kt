@@ -1,24 +1,17 @@
 import data.api.RetrofitApiClient
 import data.offsets.api.OffsetsApi
 import data.offsets.api.OffsetsApiDataSource
-import data.offsets.api.OffsetsApiDataSource.Companion.OFFSETS_BASE_URL
 import data.offsets.cache.OffsetsCacheDataSource
 import data.process.GameProcess
 import data.process.entity.LocalPlayer
+import domain.features.BunnyHop
 import domain.repository.offsets.OffsetsRepository
-import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import presentation.Main
 
-fun main() {
-    startKoin { modules(data, domain) }
-    Main()
-}
-
-private val data = module {
+val data = module {
     //retrofit
     single { RetrofitApiClient() }
-    single<OffsetsApi> { (get() as RetrofitApiClient)(OFFSETS_BASE_URL).create(OffsetsApi::class.java) }
+    single<OffsetsApi> { (get() as RetrofitApiClient)(OffsetsApiDataSource.OFFSETS_BASE_URL).create(OffsetsApi::class.java) }
 
     // datasources
     single { OffsetsApiDataSource(get()) }
@@ -28,8 +21,11 @@ private val data = module {
     single { OffsetsRepository(get(), get()) }
 }
 
-private val domain = module {
+val domain = module {
     single { GameProcess() }
 
     single { LocalPlayer(get(), get()) }
+
+    //features
+    single { BunnyHop(get())}
 }
