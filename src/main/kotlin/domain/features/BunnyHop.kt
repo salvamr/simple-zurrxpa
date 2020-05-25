@@ -1,17 +1,14 @@
 package domain.features
 
 import data.process.game.entity.LocalPlayer
-import data.process.keyboard.UserKeyboardManager
+import presentation.BUNNY_HOP_KEY
 
 class BunnyHop(
-    private val localPlayer: LocalPlayer,
-    private val userKeyboardManager: UserKeyboardManager
+    private val localPlayer: LocalPlayer
 ) : Feature() {
-
     override suspend fun run() {
-        if (userKeyboardManager.isKeyPressed(32) and localPlayer.isJumping().not()) {
-            // or localPlayer.jump()
-            userKeyboardManager.mouseWheelDown()
+        if (userInput.isKeyPressed(BUNNY_HOP_KEY) and localPlayer.isJumping().not()) {
+            userInput.mouseWheelDown()
         }
     }
 }

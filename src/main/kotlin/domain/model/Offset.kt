@@ -5,7 +5,12 @@ data class Offset(val name: String, val value: Int) : Identifiable<String> {
 
     companion object {
         const val LOCAL_PLAYER = "dwLocalPlayer"
+        const val ENTITY_PLAYER = "dwEntityList"
         const val FLAGS = "m_fFlags"
-        const val FORCE_JUMP = "dwForceJump"
+        const val HEALTH = "m_iHealth"
+        const val CROSSHAIR_ID = "m_iCrosshairId"
+        const val GUN_GAME_IMMUNITY = "m_bGunGameImmunity"
+        const val DORMANT = "m_bDormant"
+        const val TEAM_NUM = "m_iTeamNum"
     }
 }

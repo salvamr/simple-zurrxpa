@@ -3,9 +3,11 @@ import data.api.offsets.OffsetsApi
 import data.api.offsets.OffsetsApiDataSource
 import data.cache.offsets.OffsetsCacheDataSource
 import data.process.game.GameProcess
+import data.process.game.entity.EntityPlayer
 import data.process.game.entity.LocalPlayer
 import data.process.keyboard.UserKeyboardManager
 import domain.features.BunnyHop
+import domain.features.TriggerBot
 import domain.repository.offsets.OffsetsRepository
 import org.koin.dsl.module
 
@@ -28,10 +30,12 @@ val data = module {
 
 val domain = module {
     single { GameProcess() }
-
     single { UserKeyboardManager() }
+
     single { LocalPlayer(get(), get()) }
+    single { EntityPlayer(get(), get()) }
 
     //features
-    single { BunnyHop(get(), get()) }
+    single { BunnyHop(get()) }
+    single { TriggerBot(get(), get()) }
 }
