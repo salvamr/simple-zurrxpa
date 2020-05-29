@@ -1,7 +1,6 @@
 package domain.features
 
-import com.sun.jna.platform.win32.User32
-import data.process.keyboard.UserKeyboardManager
+import domain.process.keyboard.UserKeyboardManager
 import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject

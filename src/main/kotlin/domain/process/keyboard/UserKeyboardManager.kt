@@ -1,35 +1,35 @@
-package data.process.keyboard
+package domain.process.keyboard
 
 import org.jire.arrowhead.keyPressed
 import java.awt.Robot
 import java.awt.event.InputEvent
 
-class UserKeyboardManager {
-    private val robot = Robot()
-
+class UserKeyboardManager(private val robot: Robot) {
     fun leftClick() {
         with(robot) {
             mousePress(InputEvent.BUTTON1_MASK)
-            delay((60..100).random())
+            delay(addDelay())
             mouseRelease(InputEvent.BUTTON1_MASK)
         }
     }
 
     fun mouseWheelDown() {
         with(robot) {
-            mouseWheel((60..100).random())
-            delay((60..100).random())
-            mouseWheel((60..100).random())
+            mouseWheel(addDelay())
+            delay(addDelay())
+            mouseWheel(addDelay())
         }
     }
 
     fun keyPress(keyCode: Int) {
         with(robot) {
             keyPress(keyCode)
-            delay((60..100).random())
+            delay(addDelay())
             keyRelease(keyCode)
         }
     }
 
     fun isKeyPressed(keyCode: Int) = keyPressed(keyCode)
+
+    private fun addDelay() = (60..100).random()
 }

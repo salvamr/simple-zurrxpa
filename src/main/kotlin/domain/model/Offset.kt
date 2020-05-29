@@ -12,5 +12,9 @@ data class Offset(val name: String, val value: Int) : Identifiable<String> {
         const val GUN_GAME_IMMUNITY = "m_bGunGameImmunity"
         const val DORMANT = "m_bDormant"
         const val TEAM_NUM = "m_iTeamNum"
+        const val CLIENT_STATE = "dwClientState"
+        const val MAX_PLAYER = "dwClientState_MaxPlayer"
+        const val LIFE_STATE = "m_lifeState"
+        const val BONE_MATRIX = "m_dwBoneMatrix"
     }
 }

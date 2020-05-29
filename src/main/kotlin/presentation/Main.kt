@@ -1,13 +1,16 @@
 package presentation
 
 import data
-import data.process.game.GameProcess
+import domain.process.game.GameProcess
 import domain
 import domain.features.BunnyHop
 import domain.features.TriggerBot
-import domain.repository.offsets.OffsetsRepository
-import kotlinx.coroutines.*
-import kotlinx.coroutines.NonCancellable.cancel
+import domain.model.VectorX
+import domain.repository.OffsetsRepository
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.inject
@@ -28,12 +31,19 @@ object Main : KoinComponent {
 
         println("Repository sync status: ${offsetsRepository.sync()}")
 
+        val v1 = VectorX(2.0,2.0,2.0)
+        val v2 = VectorX(3.0,3.0,1.0)
+
+        println("Angle is: ${v1.calculateAngle(v2)}")
+
         with(features) {
             add(bunnyHop())
             add(triggerBot())
         }
 
-        while(gameProcess.isProcessAlive()) { delay(1000) }
+        while (gameProcess.isProcessAlive()) {
+            delay(1000)
+        }
 
         println("Leaving ...")
         features.forEach { it.cancel() }

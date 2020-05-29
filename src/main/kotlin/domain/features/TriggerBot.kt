@@ -1,7 +1,7 @@
 package domain.features
 
-import data.process.game.entity.EntityPlayer
-import data.process.game.entity.LocalPlayer
+import domain.process.game.entity.EntityPlayer
+import domain.process.game.entity.LocalPlayer
 import presentation.TRIGGER_BOT_KEY
 
 class TriggerBot(

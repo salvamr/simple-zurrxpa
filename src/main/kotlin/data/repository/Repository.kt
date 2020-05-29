@@ -1,4 +1,4 @@
-package domain.repository
+package data.repository
 
 import data.datasource.CacheDataSource
 import data.datasource.ReadDataSource

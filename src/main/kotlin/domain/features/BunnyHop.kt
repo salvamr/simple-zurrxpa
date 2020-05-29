@@ -1,6 +1,6 @@
 package domain.features
 
-import data.process.game.entity.LocalPlayer
+import domain.process.game.entity.LocalPlayer
 import presentation.BUNNY_HOP_KEY
 
 class BunnyHop(

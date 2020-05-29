@@ -3,7 +3,7 @@ package data.api.offsets
 import data.datasource.ReadDataSource
 import domain.model.Offset
 
-class OffsetsApiDataSource(
+internal class OffsetsApiDataSource(
     private val offsetsApi: OffsetsApi
 ) : ReadDataSource<String, Offset> {
     companion object {
